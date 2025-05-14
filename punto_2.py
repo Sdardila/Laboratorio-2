@@ -44,7 +44,7 @@ def imprimir_lista_circular_doble(head):
         return
     elementos = []
     current = head
-    original_head = head # Guardar la cabeza original para la condición de parada
+    original_head = head
     if head:
         while True:
             elementos.append(current.data)
@@ -69,7 +69,7 @@ def eliminar_nodo_doble(head, nodo_a_eliminar):
 def eliminar_nodo_circular_doble(head, nodo_a_eliminar):
     if not head or not nodo_a_eliminar:
         return head
-    if head.next == head:  # Solo un nodo en la lista
+    if head.next == head:
         return None
     if nodo_a_eliminar == head:
         head = head.next
@@ -98,7 +98,7 @@ def destruir_lista_circular_doble(head):
     if not head:
         return None
     current = head.next
-    original_head = head # Guardar la cabeza original para la condición de parada
+    original_head = head
     while current != original_head:
         temp = current
         current = current.next
@@ -138,7 +138,7 @@ def procesar_listas_con_seguimiento(ptr1_head, ptr2_head):
     nodos_ptr2_procesados = set()
 
     if current_ptr2:
-        original_head_ptr2 = ptr2_head # Guardar la cabeza original para la condición de parada
+        original_head_ptr2 = ptr2_head
         while current_ptr2 and current_ptr2 not in nodos_ptr2_procesados:
             elementos_ptr2.append(current_ptr2.data)
             nodos_ptr2_procesados.add(current_ptr2)
@@ -146,7 +146,6 @@ def procesar_listas_con_seguimiento(ptr1_head, ptr2_head):
             if current_ptr2 == original_head_ptr2:
                 break
 
-    # Añadir a PTR1 los elementos de PTR2 que no están en PTR1
     elementos_añadidos = []
     for elemento in elementos_ptr2:
         encontrado_en_ptr1 = False
@@ -168,17 +167,16 @@ def procesar_listas_con_seguimiento(ptr1_head, ptr2_head):
     print("   PTR2:", end=" ")
     imprimir_lista_circular_doble(ptr2_head)
 
-    # Eliminar elementos comunes de PTR1 y PTR2
     elementos_eliminados = []
     current_ptr2 = ptr2_head
     if current_ptr2:
-        original_head_ptr2 = ptr2_head # Guardar la cabeza original para la condición de parada
+        original_head_ptr2 = ptr2_head
         nodos_ptr2_procesados = set()
         while current_ptr2 and current_ptr2 not in nodos_ptr2_procesados:
             nodos_ptr2_procesados.add(current_ptr2)
             current_ptr1 = ptr1_head
             elemento_actual_ptr2 = current_ptr2.data
-            next_ptr2 = current_ptr2.next # Guardar el siguiente nodo antes de potencialmente eliminar current_ptr2
+            next_ptr2 = current_ptr2.next
 
             while current_ptr1:
                 if elemento_actual_ptr2 == current_ptr1.data:
@@ -190,11 +188,11 @@ def procesar_listas_con_seguimiento(ptr1_head, ptr2_head):
 
             if not ptr2_head:
                 break
-            elif current_ptr2 == next_ptr2: # Si solo queda un nodo o dos y se eliminó uno
-                if elemento_actual_ptr2 not in elementos_eliminados: # Agregar esta condición
+            elif current_ptr2 == next_ptr2:
+                if elemento_actual_ptr2 not in elementos_eliminados:
                     elementos_eliminados.append(elemento_actual_ptr2)
                 break
-            current_ptr2 = next_ptr2 # Usar el nodo guardado para continuar la iteración
+            current_ptr2 = next_ptr2
             if current_ptr2 == original_head_ptr2:
                 break
 
@@ -209,7 +207,6 @@ def procesar_listas_con_seguimiento(ptr1_head, ptr2_head):
     else:
         print("[]")
 
-    # Eliminar la lista PTR2
     destruir_lista_circular_doble(ptr2_head)
     ptr2_destruido = None
 

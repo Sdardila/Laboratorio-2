@@ -27,12 +27,9 @@ def esta_balanceada(expresion):
                 return "No balanceada"
     return "Balanceada" if pila.esta_vacia() else "No balanceada"
 
-
-# Bucle principal para la interacción
 while True:
     expresion = input("Ingrese una expresión (o 'salir' para terminar): ")
     if expresion.lower() == 'salir':
-        break  # Termina el bucle si el usuario ingresa 'salir'
-
+        break
     resultado = esta_balanceada(expresion)
     print(f"{expresion} => {resultado}")
