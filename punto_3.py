@@ -14,6 +14,7 @@ class Pila:
     def esta_vacia(self):
         return len(self.items) == 0
 
+
 def esta_balanceada(expresion):
     pila = Pila()
     pares = {')': '(', ']': '[', '}': '{'}
@@ -26,8 +27,12 @@ def esta_balanceada(expresion):
                 return "No balanceada"
     return "Balanceada" if pila.esta_vacia() else "No balanceada"
 
-# Ejemplos
-expresiones = ["(1233456)", "{123}", "[({123})]", "(123)", "}456{", "[789]"]
 
-for expr in expresiones:
-    print(f"{expr} => {esta_balanceada(expr)}")
+# Bucle principal para la interacción
+while True:
+    expresion = input("Ingrese una expresión (o 'salir' para terminar): ")
+    if expresion.lower() == 'salir':
+        break  # Termina el bucle si el usuario ingresa 'salir'
+
+    resultado = esta_balanceada(expresion)
+    print(f"{expresion} => {resultado}")
