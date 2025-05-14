@@ -16,6 +16,9 @@ class Pila:
 
 
 def esta_balanceada(expresion):
+    if not any(char in expresion for char in '(){}[]'):
+        return "No balanceada"  # Check for the presence of any grouping symbol
+
     pila = Pila()
     pares = {')': '(', ']': '[', '}': '{'}
 
@@ -27,9 +30,11 @@ def esta_balanceada(expresion):
                 return "No balanceada"
     return "Balanceada" if pila.esta_vacia() else "No balanceada"
 
-while True:
-    expresion = input("Ingrese una expresión (o 'salir' para terminar): ")
-    if expresion.lower() == 'salir':
-        break
-    resultado = esta_balanceada(expresion)
-    print(f"{expresion} => {resultado}")
+
+if __name__ == "__main__":
+    while True:
+        expresion = input("Ingrese una expresión (o 'salir' para terminar): ")
+        if expresion.lower() == 'salir':
+            break
+        resultado = esta_balanceada(expresion)
+        print(f"{expresion} => {resultado}")
