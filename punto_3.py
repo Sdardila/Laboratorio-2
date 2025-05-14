@@ -17,7 +17,7 @@ class Pila:
 
 def esta_balanceada(expresion):
     if not any(char in expresion for char in '(){}[]'):
-        return "No balanceada"  # Check for the presence of any grouping symbol
+        return "No balanceada"
 
     pila = Pila()
     pares = {')': '(', ']': '[', '}': '{'}
